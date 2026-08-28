@@ -1,0 +1,11 @@
+{
+  "firstName": "Dr",
+  "lastName": "Dre",
+  "email": "dr@dre.com",
+  "password": "dre",
+  "street": "455 main street",
+  "city": "Atlanta",
+  "zip": "40001",
+  "passengerCount": "4",
+  "expectedPrice": "$2338 USD"
+}

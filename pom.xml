@@ -1,0 +1,184 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.debautomation</groupId>
+    <artifactId>selenium-docker</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>selenium-docker</name>
+    <url>http://maven.apache.org</url>
+    <!--[Flight Reservation](https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/reservation-app/index.html) -->
+    <!-- [Vendor Portal](https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/vendor-app/index.html) -->
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--Output directory -->
+        <package.directory>${project.build.directory}/docker-resources</package.directory>
+    </properties>
+
+    <dependencies>
+        <!-- Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>4.46.0</version>
+        </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/ch.qos.logback/logback-classic -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>6.3.4</version>
+        </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/tools.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>3.2.2</version>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/org.testng/testng -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.12.0</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>selenium-docker</finalName> <!-- This is optional -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.6</version>
+
+                <configuration>
+
+                    <systemPropertyVariables>
+                        <!--   <browser>firefox</browser> -->
+                        <selenium.grid.enabled>true</selenium.grid.enabled>
+                    </systemPropertyVariables>
+
+                    <suiteXmlFiles>
+                        <file>src/test/resources/test-suites/flight-reservation.xml</file>
+                        <file>src/test/resources/test-suites/vendor-portal.xml</file>
+                    </suiteXmlFiles>
+
+                    <parallel>tests</parallel>
+                    <threadCount>1</threadCount>
+
+                    <reportsDirectory>
+                        target/test-output
+                    </reportsDirectory>
+
+                </configuration>
+            </plugin>
+
+            <!-- To copy all the dependencies to run our tests as part of "mvn package"-->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.11.0</version> <!-- Use the latest version -->
+                <executions>
+                    <execution>
+                        <id>copy-dependencies-for-tests</id>
+                        <phase>prepare-package</phase> <!-- Runs right before the packaging phase -->
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Target folder where all JARs will be copied -->
+                            <outputDirectory>${package.directory}/libs</outputDirectory>
+                            <!--                            <outputDirectory>${project.build.directory}/dependencies</outputDirectory>-->
+
+                            <!-- Ensures 'test', 'compile', and 'runtime' dependencies are all included -->
+                            <!--                            <includeScope>test</includeScope>-->
+
+                            <!--                            &lt;!&ndash; Optional: Prevents rewriting files if they already exist &ndash;&gt;-->
+                            <!--                            <overWriteReleases>false</overWriteReleases>-->
+                            <!--                            <overWriteSnapshots>false</overWriteSnapshots>-->
+                            <!--                            <overWriteIfNewer>true</overWriteIfNewer>-->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--            maven jar plugin to package page objects , test classes into jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.2</version> <!-- Use the latest stable version -->
+                <configuration>
+                    <!-- Target folder where all JARs will be copied -->
+                    <outputDirectory>${package.directory}/libs</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- Creates a separate JAR file for classes inside src/test/java -->
+                            <goal>test-jar</goal>
+                        </goals>
+<!--                        it includes only .class that is java file. It excludes all properties and resources-->
+<!--                         in the resource plugin we are including resources-->
+                        <configuration>
+                            <includes>**/*.class</includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!--            maven resources plugin to copy resources into the output directory-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <!-- Bind to a lifecycle phase, like validate or process-resources -->
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <!-- Target output directory -->
+                            <outputDirectory>${package.directory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <!-- Source directory of your files -->
+                                    <directory>src/test/resources</directory>
+                                    <!-- Set to true if you want to replace properties like ${project.version} -->
+<!--                                    <filtering>false</filtering>-->
+                                </resource>
+<!--                                <resource>-->
+<!--                                    <directory>.</directory>-->
+<!--                                    <includes>-->
+<!--                                        <include>dummy.txt</include>-->
+<!--                                    </includes>-->
+<!--                                </resource>-->
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

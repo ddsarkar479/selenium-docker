@@ -1,0 +1,76 @@
+618  [main] INFO  c.debautomation.util.ResourceLoader -- Reading resource from location config/default.properties
+631  [main] INFO  com.debautomation.util.Config -- Test Properties
+632  [main] INFO  com.debautomation.util.Config -- -----------------
+632  [main] INFO  com.debautomation.util.Config -- selenium.grid.urlFormat = http://%s:4444/wd/hub
+632  [main] INFO  com.debautomation.util.Config -- browser = firefox
+633  [main] INFO  com.debautomation.util.Config -- vendorPortal.url = https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/vendor-app/index.html
+633  [main] INFO  com.debautomation.util.Config -- selenium.grid.enabled = true
+633  [main] INFO  com.debautomation.util.Config -- flightReservation.url = https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/reservation-app/index.html
+633  [main] INFO  com.debautomation.util.Config -- selenium.grid.hubHost = localhost
+633  [main] INFO  com.debautomation.util.Config -- -----------------
+661  [TestNG-tests-1] INFO  c.d.tests.AbstractBaseTest -- Grid url http://localhost:4444/wd/hub
+4174 [TestNG-tests-1] INFO  c.debautomation.util.ResourceLoader -- Reading resource from location test-data/flight-reservation/passenger-1.json
+12754 [TestNG-tests-1] INFO  c.d.p.f.FlightConfirmationPage -- Flight Confirmation#: 2026-8-1787507738659
+12754 [TestNG-tests-1] INFO  c.d.p.f.FlightConfirmationPage -- Total price: $584 USD
+18497 [TestNG-tests-1] INFO  c.d.tests.AbstractBaseTest -- Grid url http://localhost:4444/wd/hub
+21439 [TestNG-tests-1] INFO  c.debautomation.util.ResourceLoader -- Reading resource from location test-data/flight-reservation/passenger-2.json
+31039 [TestNG-tests-1] INFO  c.d.p.f.FlightConfirmationPage -- Flight Confirmation#: 2026-8-1787507757170
+31040 [TestNG-tests-1] INFO  c.d.p.f.FlightConfirmationPage -- Total price: $1169 USD
+37343 [TestNG-tests-1] INFO  c.d.tests.AbstractBaseTest -- Grid url http://localhost:4444/wd/hub
+39710 [TestNG-tests-1] INFO  c.debautomation.util.ResourceLoader -- Reading resource from location test-data/flight-reservation/passenger-3.json
+46690 [TestNG-tests-1] INFO  c.d.p.f.FlightConfirmationPage -- Flight Confirmation#: 2026-8-1787507772700
+46690 [TestNG-tests-1] INFO  c.d.p.f.FlightConfirmationPage -- Total price: $1753 USD
+52372 [TestNG-tests-1] INFO  c.d.tests.AbstractBaseTest -- Grid url http://localhost:4444/wd/hub
+54606 [TestNG-tests-1] INFO  c.debautomation.util.ResourceLoader -- Reading resource from location test-data/flight-reservation/passenger-4.json
+60074 [TestNG-tests-1] INFO  c.d.p.f.FlightConfirmationPage -- Flight Confirmation#: 2026-8-1787507785979
+60074 [TestNG-tests-1] INFO  c.d.p.f.FlightConfirmationPage -- Total price: $2338 USD
+65732 [main] INFO  c.debautomation.util.ResourceLoader -- Reading resource from location config/default.properties
+65733 [main] INFO  com.debautomation.util.Config -- Test Properties
+65735 [main] INFO  com.debautomation.util.Config -- -----------------
+65735 [main] INFO  com.debautomation.util.Config -- selenium.grid.urlFormat = http://%s:4444/wd/hub
+65735 [main] INFO  com.debautomation.util.Config -- browser = firefox
+65735 [main] INFO  com.debautomation.util.Config -- vendorPortal.url = https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/vendor-app/index.html
+65736 [main] INFO  com.debautomation.util.Config -- selenium.grid.enabled = true
+65736 [main] INFO  com.debautomation.util.Config -- flightReservation.url = https://d1uh9e7cu07ukd.cloudfront.net/selenium-docker/reservation-app/index.html
+65738 [main] INFO  com.debautomation.util.Config -- selenium.grid.hubHost = localhost
+65738 [main] INFO  com.debautomation.util.Config -- -----------------
+65742 [TestNG-tests-1] INFO  c.d.tests.AbstractBaseTest -- Grid url http://localhost:4444/wd/hub
+67982 [TestNG-tests-1] INFO  c.debautomation.util.ResourceLoader -- Reading resource from location test-data/vendor-portal/john.json
+71060 [TestNG-tests-1] INFO  c.d.p.vendorportal.DashboardPage -- Result count 0
+77425 [TestNG-tests-1] INFO  c.d.tests.AbstractBaseTest -- Grid url http://localhost:4444/wd/hub
+80158 [TestNG-tests-1] INFO  c.debautomation.util.ResourceLoader -- Reading resource from location test-data/vendor-portal/mike.json
+80168 [TestNG-tests-1] ERROR com.debautomation.util.JsonUtil -- Unable to read test data test-data/vendor-portal/mike.json
+tools.jackson.core.exc.StreamReadException: Unexpected character ('/' (code 47)): maybe a (non-standard) comment? (not recognized as one since Feature 'ALLOW_COMMENTS' not enabled for parser)
+ at [Source: REDACTED (`StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION` disabled); byte offset: #224]
+	at tools.jackson.core.JsonParser._constructReadException(JsonParser.java:1870)
+	at tools.jackson.core.base.ParserMinimalBase._reportUnexpectedChar(ParserMinimalBase.java:1049)
+	at tools.jackson.core.json.UTF8StreamJsonParser._skipComment(UTF8StreamJsonParser.java:3891)
+	at tools.jackson.core.json.UTF8StreamJsonParser._skipWSOrEnd2(UTF8StreamJsonParser.java:3771)
+	at tools.jackson.core.json.UTF8StreamJsonParser._skipWSOrEnd(UTF8StreamJsonParser.java:3747)
+	at tools.jackson.core.json.UTF8StreamJsonParser.nextNameMatch(UTF8StreamJsonParser.java:1130)
+	at tools.jackson.databind.deser.bean.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:684)
+	at tools.jackson.databind.deser.bean.BeanDeserializer.deserialize(BeanDeserializer.java:200)
+	at tools.jackson.databind.deser.DeserializationContextExt.readRootValue(DeserializationContextExt.java:322)
+	at tools.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:2666)
+	at tools.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:1634)
+	at com.debautomation.util.JsonUtil.getTestData(JsonUtil.java:18)
+	at com.debautomation.tests.vendorportal.VendorPortalTest.setPageObjects(VendorPortalTest.java:29)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:71)
+	at org.testng.internal.invokers.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:400)
+	at org.testng.internal.invokers.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:333)
+	at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:657)
+	at org.testng.TestRunner.beforeRun(TestRunner.java:646)
+	at org.testng.TestRunner.run(TestRunner.java:612)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner$SuiteWorker.run(SuiteRunner.java:463)
+	at org.testng.internal.thread.ThreadUtil.lambda$execute$0(ThreadUtil.java:64)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+87287 [TestNG-tests-1] INFO  c.d.tests.AbstractBaseTest -- Grid url http://localhost:4444/wd/hub
+90086 [TestNG-tests-1] INFO  c.debautomation.util.ResourceLoader -- Reading resource from location test-data/vendor-portal/john.json
+93149 [TestNG-tests-1] INFO  c.d.p.vendorportal.DashboardPage -- Result count 0

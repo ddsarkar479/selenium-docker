@@ -1,0 +1,11 @@
+{
+  "firstName": "Marshal",
+  "lastName": "Mathers",
+  "email": "mjip@pop.com",
+  "password": "mma",
+  "street": "456 main street",
+  "city": "Detroit",
+  "zip": "40001",
+  "passengerCount": "2",
+  "expectedPrice": "$1169 USD"
+}
